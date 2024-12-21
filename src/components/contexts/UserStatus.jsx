@@ -1,9 +1,8 @@
 import { useEffect, useReducer, createContext } from 'react';
-import  {jwtDecode}  from 'jwt-decode';
+import axios from 'axios'; 
 
 const initialState = {
   isAuthenticated: false,
-  token: null,
   username: null,
   error: null,
 };
@@ -11,21 +10,16 @@ const initialState = {
 const userReducer = (state, action) => {
   switch (action.type) {
     case "login":
-      if (action.token) {
-        return {
-          ...state,
-          isAuthenticated: true,
-          token: action.token,
-          username: action.username,
-          error: null,
-        };
-      }
-      return { ...state, error: "Login failed" };
+      return {
+        ...state,
+        isAuthenticated: true,
+        username: action.username,
+        error: null,
+      };
     case "logout":
       return {
         ...state,
         isAuthenticated: false,
-        token: null,
         username: null,
       };
     case "error":
@@ -44,35 +38,22 @@ const UserStatusContextProvider = ({ children }) => {
   const [user, dispatch] = useReducer(userReducer, initialState);
 
   useEffect(() => {
-    // Rehydrate state on app load
-    const token = localStorage.getItem('token');
-    if (token) {
+    const checkAuth = async () => {
       try {
-        const decoded = jwtDecode(token); 
-        const currentTime = Date.now() / 1000;
-        if (decoded.exp > currentTime) {
-          dispatch({
-            type: 'login',
-            token,
-            username: decoded.username, 
-          });
-        } else {
-          localStorage.removeItem('token'); 
+        const res = await axios.get('/api/auth/me', { withCredentials: true });
+        console.log('Auth Check Response:', res.data); // Debugging
+
+        if (res.data.username) {
+          dispatch({ type: 'login', username: res.data.username });
         }
       } catch (err) {
-        console.error('Invalid token:', err);
-        localStorage.removeItem('token'); 
+        console.error('Auth Check Error:', err.response?.data || err.message); // Debugging
+        dispatch({ type: 'logout' }); // Ensure user is logged out if not authenticated
       }
-    }
-  }, []);
+    };
 
-  useEffect(() => {
-    if (user.token) {
-      localStorage.setItem('token', user.token);
-    } else {
-      localStorage.removeItem('token');
-    }
-  }, [user.token]);
+    checkAuth();
+  }, []);
 
   return (
     <userStatusContext.Provider value={{ user, dispatch }}>
