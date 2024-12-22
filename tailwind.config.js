@@ -16,6 +16,10 @@ export default {
       },
       colors:{
         'midnight-blue': '#050526',
+        'beige': '#F5F1E3',
+      },
+      fontFamily: {
+        sans: ['Roboto Slab', 'serif'], // Add your Google Font here
       },
     },
   },

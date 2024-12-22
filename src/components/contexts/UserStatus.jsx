@@ -41,14 +41,14 @@ const UserStatusContextProvider = ({ children }) => {
     const checkAuth = async () => {
       try {
         const res = await axios.get('/api/auth/me', { withCredentials: true });
-        console.log('Auth Check Response:', res.data); // Debugging
+        console.log('Auth Check Response:', res.data);
 
         if (res.data.username) {
           dispatch({ type: 'login', username: res.data.username });
         }
       } catch (err) {
-        console.error('Auth Check Error:', err.response?.data || err.message); // Debugging
-        dispatch({ type: 'logout' }); // Ensure user is logged out if not authenticated
+        console.error('Auth Check Error:', err.response?.data || err.message); 
+        dispatch({ type: 'logout' }); 
       }
     };
 

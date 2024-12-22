@@ -52,6 +52,4 @@ const AuthenticationAPI = {
     
   };
   
-  
   export default AuthenticationAPI;
-  
