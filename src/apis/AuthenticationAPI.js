@@ -12,19 +12,16 @@ const AuthenticationAPI = {
   
       return res.data; 
     },
-  
-    // Register a new user
-    register: async (firstName, lastName, username, email, password) => {
-      const res = await RequestHandler.post(`/api/auth/register`, {
-        firstName,
-        lastName,
-        username,
-        email,
-        password,
+
+    register: async (formData) => {
+      const res = await RequestHandler.post(`/api/auth/register`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-  
       return res.data;
     },
+    
 
     // Get Profile data
     getProfile: async () => {
@@ -34,7 +31,11 @@ const AuthenticationAPI = {
 
     // Update profile data
     updateProfile: async (profileData) => {
-      const res = await RequestHandler.put(`/api/auth/profile`, profileData);
+      const res = await RequestHandler.put(`/api/auth/profile`, profileData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       return res.data;
     },
 

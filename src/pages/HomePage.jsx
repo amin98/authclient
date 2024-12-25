@@ -1,10 +1,23 @@
+import React, { useState, useEffect } from 'react';
+
 const HomePage = () => {
-    return (
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold text-white">Welcome to the Home Page!</h1>
-      </div>
-    );
-  };
-  
-  export default HomePage;
-  
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
+
+  return (
+    <div className="relative flex items-center justify-center text-center ">
+      <h1
+        className={`absolute text-4xl font-bold text-white transition-all duration-200 ease-out ${
+          animate ? 'top-5' : 'top-[-100%]'
+        }`}
+      >
+        emocleW ot eht emoH egaP
+      </h1>
+    </div>
+  );
+};
+
+export default HomePage;

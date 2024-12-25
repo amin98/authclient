@@ -8,9 +8,9 @@ const MainLayout = () => {
   const location = useLocation();
 
   return (
-    <div className="flex flex-col min-h-screen bg-midnight-blue">
+    <div className="flex flex-col bg-midnight-blue " style={{ overflow: 'overlay' }}>
       <header className="flex justify-between p-4 text-white">
-        <nav className="flex items-center justify-between w-full gap-5">
+        <nav className="flex items-center justify-between w-full gap-5 text-xl">
           <div className="flex gap-5">
             {user.isAuthenticated ? (
               <Link to="/profile" className="font-bold">
@@ -45,7 +45,7 @@ const MainLayout = () => {
           )}
         </nav>
       </header>
-      <main className="container flex-grow p-4 mx-auto">
+      <main className="container mx-auto" style={{ minHeight: 'calc(100vh - 60px)' }}>
         <Outlet />
       </main>
     </div>
