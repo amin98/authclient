@@ -1,100 +1,49 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Bars2Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { userStatusContext } from '../components/contexts/UserStatus';
+import LogoutButton from '../components/LogoutButton';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
-
-  const handleMenuClick = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      menuRef.current.classList.remove('hidden');
-    } else {
-      menuRef.current.classList.add('hidden');
-    }
-  }, [isMenuOpen]);
+  const { user } = useContext(userStatusContext);
+  const location = useLocation();
 
   return (
-    <nav className="bg-gray-800 text-white p-4 fixed top-0 w-full z-10">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold">
-          Auth Client
-        </Link>
+    <header className="flex justify-between p-4 text-white">
+      <nav className="flex items-center justify-between w-full gap-5 text-xl">
+        <div className="flex gap-5">
+          {user.isAuthenticated ? (
+            <Link to="/profile" className="font-bold">
+              Welcome {user.username}!
+            </Link>
+          ) : (
+            <h1 className="font-bold"></h1>
+          )}
 
-        <ul className="hidden md:flex space-x-4">
-          <li>
-            <Link to="/" className="hover:text-gray-400">
+          {user.isAuthenticated && (
+            <Link to="/" className="mr-4">
               Home
             </Link>
-          </li>
-          <li>
-            <Link to="/login" className="hover:text-gray-400">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/profile" className="hover:text-gray-400">
-              Register
-            </Link>
-          </li>
-        </ul>
-
-        {/* Hamburger Menu Button */}
-        <button className="md:hidden" onClick={handleMenuClick}>
-          {isMenuOpen ? (
-            <XMarkIcon className="h-6 w-6" />
-          ) : (
-            <Bars2Icon className="h-6 w-6" />
           )}
-        </button>
-
-        {/* Collapsible Menu */}
-        <div
-          ref={menuRef}
-          className={`md:hidden absolute top-full left-0 w-full bg-gray-800 shadow-lg ${
-            isMenuOpen ? '' : 'hidden'
-          }`}
-        >
-          <ul className="flex flex-col space-y-4 px-4 pb-4">
-            <li>
-              <Link
-                to="/"
-                className="hover:text-gray-400"
-                onClick={handleLinkClick}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/list"
-                className="hover:text-gray-400"
-                onClick={handleLinkClick}
-              >
-                My List
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/profile"
-                className="hover:text-gray-400"
-                onClick={handleLinkClick}
-              >
-                Profile
-              </Link>
-            </li>
-          </ul>
         </div>
-      </div>
-    </nav>
+
+        {!user.isAuthenticated ? (
+          <div>
+            {location.pathname !== '/login' && (
+              <Link to="/login" className="mr-4">
+                Login
+              </Link>
+            )}
+            {location.pathname !== '/register' && (
+              <Link to="/register" className="mr-4">
+                Register
+              </Link>
+            )}
+          </div>
+        ) : (
+          <LogoutButton />
+        )}
+      </nav>
+    </header>
   );
 };
 

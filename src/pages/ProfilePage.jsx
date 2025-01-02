@@ -13,6 +13,7 @@ const ProfilePage = () => {
         setProfile(res);
       } catch (err) {
         setError("Unable to fetch profile");
+        console.error(err);
       }
     };
 
@@ -36,6 +37,7 @@ const ProfilePage = () => {
       setError(null);
     } catch (err) {
       setError("Unable to update profile");
+      console.log(err)
     }
   };
 
