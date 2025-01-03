@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage'; 
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UserStatusContextProvider from './components/contexts/UserStatus';
+import QuestionnairePage from './pages/QuestionnairePage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
             <Route path="profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-            
+            <Route path="questionnaire" element={<ProtectedRoute><QuestionnairePage /></ProtectedRoute>} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
           </Route>

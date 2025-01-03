@@ -1,7 +1,7 @@
-import { useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { userStatusContext } from '../components/contexts/UserStatus';
-import LogoutButton from '../components/LogoutButton';
+import { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { userStatusContext } from "../components/contexts/UserStatus";
+import LogoutButton from "../components/LogoutButton";
 
 const Navbar = () => {
   const { user } = useContext(userStatusContext);
@@ -20,20 +20,25 @@ const Navbar = () => {
           )}
 
           {user.isAuthenticated && (
-            <Link to="/" className="mr-4">
-              Home
-            </Link>
+            <>
+              <Link to="/" className="mr-4">
+                Home
+              </Link>
+              <Link to="/questionnaire" className="mr-4">
+                Questionnaire
+              </Link>
+            </>
           )}
         </div>
 
         {!user.isAuthenticated ? (
           <div>
-            {location.pathname !== '/login' && (
+            {location.pathname !== "/login" && (
               <Link to="/login" className="mr-4">
                 Login
               </Link>
             )}
-            {location.pathname !== '/register' && (
+            {location.pathname !== "/register" && (
               <Link to="/register" className="mr-4">
                 Register
               </Link>
