@@ -1,9 +1,10 @@
-import { useEffect, useReducer, createContext } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
+import { createContext, useEffect, useReducer } from 'react';
 
 const initialState = {
   isAuthenticated: false,
   username: null,
+  role: null,
   error: null,
 };
 
@@ -14,6 +15,7 @@ const userReducer = (state, action) => {
         ...state,
         isAuthenticated: true,
         username: action.username,
+        role: action.role,
         error: null,
       };
     case "logout":
@@ -21,6 +23,7 @@ const userReducer = (state, action) => {
         ...state,
         isAuthenticated: false,
         username: null,
+        role: null,
       };
     case "error":
       return {
@@ -34,6 +37,7 @@ const userReducer = (state, action) => {
 
 export const userStatusContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 const UserStatusContextProvider = ({ children }) => {
   const [user, dispatch] = useReducer(userReducer, initialState);
 
@@ -44,7 +48,11 @@ const UserStatusContextProvider = ({ children }) => {
         console.log('Auth Check Response:', res.data);
 
         if (res.data.username) {
-          dispatch({ type: 'login', username: res.data.username });
+          dispatch({ 
+            type: 'login',
+            username: res.data.username,
+            role: res.data.role,
+          });
         }
       } catch (err) {
         console.error('Auth Check Error:', err.response?.data || err.message); 

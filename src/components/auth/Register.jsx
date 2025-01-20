@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthenticationAPI from "../../apis/AuthenticationAPI";
 import LogoImage from "../../assets/mrcolby-invert.png";
 import InputField from "../../components/InputField";
@@ -53,6 +53,8 @@ const Register = () => {
     }
   };
 
+  
+
   return (
     <div className="grid items-start justify-center grid-cols-1 gap-10 md:grid-cols-4">
       {/* Logo Section */}
@@ -74,7 +76,7 @@ const Register = () => {
       {/* Register Form Section */}
       <div className="col-span-1 md:col-span-2">
         <h2 className="mb-5 text-4xl font-bold text-center text-white">
-          Register
+          Sign Up
         </h2>
         <form
           onSubmit={handleSubmit}
@@ -135,7 +137,12 @@ const Register = () => {
           >
             Register
           </button>
+          
+          <Link to="/login" className="text-sm underline text-start hover:text-blue-500">
+            If you're already on a journey, sign in.
+        </Link>
         </form>
+
       </div>
     </div>
   );

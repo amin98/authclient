@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const HomePage = () => {
   const [animate, setAnimate] = useState(false);
@@ -14,7 +14,6 @@ const HomePage = () => {
           animate ? 'top-5' : 'top-[-100%]'
         }`}
       >
-        emocleW ot eht emoH egaP
       </h1>
     </div>
   );

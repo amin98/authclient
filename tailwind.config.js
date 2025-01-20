@@ -15,8 +15,9 @@ export default {
         shakeX: "shakeX 0.5s ease-in-out",
       },
       colors:{
-        'midnight-blue': '#050526',
+        'midnight-blue': '#161635',
         'beige': '#F5F1E3',
+        'dark-gray': '#1c1c1e'
       },
       fontFamily: {
         sans: ['Roboto Slab', 'serif'], // Add your Google Font here

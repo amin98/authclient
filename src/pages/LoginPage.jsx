@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Login from '../components/auth/Login';
 import { userStatusContext } from '../components/contexts/UserStatus';
 
@@ -12,7 +12,10 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="flex items-center justify-center h-full">
+    <div className="flex items-center justify-center h-screen ">
+      <Link to="/register" className="absolute text-white right-5 top-3">
+        Register
+      </Link>
       <Login />
     </div>
   );

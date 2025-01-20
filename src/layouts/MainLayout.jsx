@@ -1,14 +1,22 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
 const MainLayout = () => {
+  const location = useLocation();
+  
+  const nonNavbarRoutes = ['/login', '/register'  ];
+  const isNavbarExcluded = nonNavbarRoutes.includes(location.pathname);
+
   return (
     <div className="flex flex-col bg-midnight-blue" style={{ overflow: 'overlay' }}>
-      <Navbar />
-      <main className="container mx-auto" style={{ minHeight: 'calc(100vh - 60px)' }}>
-        <Outlet />
-      </main>
-    </div>
+    {!isNavbarExcluded && <Navbar />}
+    <main
+      className="container mx-auto"
+      style={{ minHeight: nonNavbarRoutes ? '100vh' : 'calc(100vh - 56px)' }}
+    >
+      <Outlet />
+    </main>
+  </div>
   );
 };
 
