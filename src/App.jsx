@@ -9,6 +9,7 @@ import ProfilePage from './pages/ProfilePage';
 import QuestionnairePage from './pages/QuestionnairePage';
 import RegisterPage from './pages/RegisterPage';
 import StoriesPage from './pages/StoriesPage';
+import BooksPage from './pages/BooksPage';
 function App() {
   return (
     <UserStatusContextProvider>
@@ -20,7 +21,7 @@ function App() {
             <Route path="questionnaire" element={<ProtectedRoute><QuestionnairePage /></ProtectedRoute>} />
             <Route path="add-book" element={<ProtectedRoute><AddBookPage /></ProtectedRoute>} />
             <Route path="stories" element={<ProtectedRoute> <StoriesPage/>  </ProtectedRoute>} />
-
+            <Route path="books" element={<ProtectedRoute><BooksPage /></ProtectedRoute>} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
           </Route>

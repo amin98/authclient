@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BookAPI from "../apis/BookAPI";
+import { userStatusContext } from "../components/contexts/UserStatus";
 
 const AddBookPage = () => {
-    
+  const { user } = useContext(userStatusContext); // Correctly use the context
+   useEffect(() => {
+
+    console.log("User on Add Book Page:", user); 
+
+  }, [user]);
+  
   const [formData, setFormData] = useState({
     title: "",
     author: "",
     description: "",
-    bookImage: null, 
+    bookImage: null,
   });
-  
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -21,31 +27,35 @@ const AddBookPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const data = new FormData();
-      for (const key in formData) {
-        data.append(key, formData[key]);
-      }
 
+    if (user.role !== "emperor") {
+      setError("You do not have permission to add books");
+      return;
+    }
+
+    const data = new FormData();
+    for (const key in formData) {
+      data.append(key, formData[key]);
+    }
+    try {
       await BookAPI.createBook(data);
       navigate("/");
     } catch (err) {
-      setError("Failed to create book");
+      setError("Failed to add book");
     }
   };
-
   return (
-    <div className="max-w-md mx-auto">
-      <h2 className="mb-4 text-2xl text-white">Add Book</h2>
-      {error && <p className="text-red-500">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="flex flex-col items-center justify-center">
+      <h1 className="text-white ">Add Book</h1>
+      {error && <p>{error}</p>}
+      <form onSubmit={handleSubmit} className="flex flex-col justify-center gap-5 mx-10">
         <input
           type="text"
           name="title"
           placeholder="Title"
           value={formData.title}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="p-1"
         />
         <input
           type="text"
@@ -53,31 +63,21 @@ const AddBookPage = () => {
           placeholder="Author"
           value={formData.author}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="p-1"
         />
         <textarea
           name="description"
           placeholder="Description"
           value={formData.description}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
         />
-        <div>
-          <label htmlFor="bookImage" className="block mb-1">
-            Upload Book Image
-          </label>
-          <input
-            type="file"
-            name="bookImage"
-            id="bookImage"
-            accept="image/*"
-            onChange={handleChange}
-            className="w-full"
-          />
-        </div>
-        <button type="submit" className="p-2 text-white bg-blue-500 rounded">
-          Add Book
-        </button>
+        <input
+          type="file"
+          name="bookImage"
+          accept="image/*"
+          onChange={handleChange}
+        />
+        <button type="submit">Add Book</button>
       </form>
     </div>
   );
