@@ -2,14 +2,17 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UserStatusContextProvider from './components/contexts/UserStatus';
 import MainLayout from './layouts/MainLayout';
-import AddBookPage from './pages/AddBookPage';
+import AddBookPage from './pages/books/AddBookPage';
+import BooksPage from './pages/books/BooksPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import QuestionnairePage from './pages/QuestionnairePage';
 import RegisterPage from './pages/RegisterPage';
 import StoriesPage from './pages/StoriesPage';
-import BooksPage from './pages/BooksPage';
+import BookDetailsPage from './pages/books/BookDetailsPage';
+import AdminPage from './pages/AdminPage';
+
 function App() {
   return (
     <UserStatusContextProvider>
@@ -22,6 +25,8 @@ function App() {
             <Route path="add-book" element={<ProtectedRoute><AddBookPage /></ProtectedRoute>} />
             <Route path="stories" element={<ProtectedRoute> <StoriesPage/>  </ProtectedRoute>} />
             <Route path="books" element={<ProtectedRoute><BooksPage /></ProtectedRoute>} />
+            <Route path="books/:id" element={<ProtectedRoute><BookDetailsPage /></ProtectedRoute>} />
+            <Route path="admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
           </Route>

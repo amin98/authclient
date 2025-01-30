@@ -12,7 +12,7 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
-    <header className="z-10 p-4 text-white bg-midnight-blue">
+    <header className="z-10 p-4 text-muted-black bg-cream-white">
       <nav className="flex items-center justify-between">
         <div className="flex items-center gap-5">
           {user.isAuthenticated ? (
@@ -29,14 +29,14 @@ const Navbar = () => {
           className="block md:hidden focus:outline-none"
         >
           {menuOpen ? (
-            <XMarkIcon className="w-6 h-6 text-white" />
+            <XMarkIcon className="w-6 h-6 text-muted-black" />
           ) : (
-            <Bars3Icon className="w-6 h-6 text-white" />
+            <Bars3Icon className="w-6 h-6 text-muted-black" />
           )}
         </button>
 
         <div
-          className={`flex-col md:flex-row md:flex items-center gap-5 md:gap-10 md:static absolute top-14 left-0 right-0 bg-midnight-blue p-4 md:p-0 transition-all duration-300 ${
+          className={`flex-col md:flex-row md:flex items-center gap-5 md:gap-10 md:static absolute top-14 left-0 right-0 bg-cream-white p-4 md:p-0 transition-all duration-300 ${
             menuOpen ? "flex" : "hidden"
           }`}
         >
@@ -57,13 +57,22 @@ const Navbar = () => {
                 <Link to="/stories" className="md:mr-4" onClick={toggleMenu}>
                   Stories
                 </Link>
+
+                <Link to="/books" className="md:mr-4" onClick={toggleMenu}>
+                  Books
+                </Link>
               </>
             )}
 
             {user.isAuthenticated && user.role === "emperor" && (
-              <Link to="/add-book" className="md:mr-4" onClick={toggleMenu}>
-                Add Book
-              </Link>
+              <>
+                <Link to="/add-book" className="md:mr-4" onClick={toggleMenu}>
+                  Add Book
+                </Link>
+                <Link to="/admin" className="md:mr-4" onClick={toggleMenu}>
+                  Admin
+                </Link>
+              </>
             )}
           </div>
 

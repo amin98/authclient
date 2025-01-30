@@ -17,7 +17,9 @@ export default {
       colors:{
         'midnight-blue': '#161635',
         'beige': '#F5F1E3',
-        'dark-gray': '#1c1c1e'
+        'dark-gray': '#1c1c1e',
+        'cream-white': '#FAF9F6',
+        'muted-black': '#1E1E1E',
       },
       fontFamily: {
         sans: ['Roboto Slab', 'serif'], // Add your Google Font here

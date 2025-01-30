@@ -123,7 +123,7 @@ const ProfilePage = () => {
 
           <button
             type="submit"
-            className="w-full py-2 font-medium text-white transition bg-blue-500 rounded-md hover:bg-blue-600"
+            className="w-full py-2 font-medium text-muted-black transition bg-blue-500 rounded-md hover:bg-blue-600"
           >
             Save Changes
           </button>

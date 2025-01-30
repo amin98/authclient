@@ -8,7 +8,7 @@ const MainLayout = () => {
   const isNavbarExcluded = nonNavbarRoutes.includes(location.pathname);
 
   return (
-    <div className="flex flex-col bg-midnight-blue" style={{ overflow: 'overlay' }}>
+    <div className="flex flex-col bg-cream-white" style={{ overflow: 'overlay' }}>
     {!isNavbarExcluded && <Navbar />}
     <main
       className="container mx-auto"

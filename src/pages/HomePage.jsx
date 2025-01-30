@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <div className="relative flex items-center justify-center text-center ">
       <h1
-        className={`absolute text-4xl font-bold text-white transition-all duration-200 ease-out ${
+        className={`absolute text-4xl font-bold text-muted-black transition-all duration-200 ease-out ${
           animate ? 'top-5' : 'top-[-100%]'
         }`}
       >

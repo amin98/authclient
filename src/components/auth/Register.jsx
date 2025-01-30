@@ -58,7 +58,7 @@ const Register = () => {
   return (
     <div className="grid items-start justify-center grid-cols-1 gap-10 md:grid-cols-4">
       {/* Logo Section */}
-      <div className="items-center justify-center hidden col-span-2 gap-5 text-white md:grid">
+      <div className="items-center justify-center hidden col-span-2 gap-5 text-muted-black md:grid">
         <img src={LogoImage} alt="Logo" className="w-40 mx-auto" />
         <div className="flex flex-col gap-3 text-xl font-light text-start text-pretty">
         <span>
@@ -75,7 +75,7 @@ const Register = () => {
   
       {/* Register Form Section */}
       <div className="col-span-1 md:col-span-2">
-        <h2 className="mb-5 text-4xl font-bold text-center text-white">
+        <h2 className="mb-5 text-4xl font-bold text-center text-muted-black">
           Sign Up
         </h2>
         <form
@@ -133,7 +133,7 @@ const Register = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="p-2 text-white bg-[#06073b] hover:bg-[#030424] rounded"
+            className="p-2 text-muted-black bg-[#06073b] hover:bg-[#030424] rounded"
           >
             Register
           </button>

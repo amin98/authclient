@@ -36,7 +36,7 @@ const StoriesCards = () => {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {storiesHeaderDataDummy.map((story) => (
                     <Link to={`/stories/${story.id}`} key={story.id}>
-                        <div className="flex flex-col items-center justify-center p-4 m-4 bg-gray-800 rounded-lg">
+                        <div className="flex flex-col items-center justify-center p-4 m-4 rounded-lg shadow-md bg-cream-white">
                             <h2>{story.title}</h2>
                             <p>{story.content}</p>
                         </div>

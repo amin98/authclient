@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex items-center justify-center h-screen ">
-      <Link to="/register" className="absolute text-white right-5 top-3">
+      <Link to="/register" className="absolute text-muted-black right-5 top-3">
         Register
       </Link>
       <Login />

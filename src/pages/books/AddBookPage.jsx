@@ -1,15 +1,13 @@
-import { useState, useContext, useEffect } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BookAPI from "../apis/BookAPI";
-import { userStatusContext } from "../components/contexts/UserStatus";
+import BookAPI from "../../apis/BookAPI";
+import { userStatusContext } from "../../components/contexts/UserStatus";
 
 const AddBookPage = () => {
   const { user } = useContext(userStatusContext); // Correctly use the context
-   useEffect(() => {
-
-    console.log("User on Add Book Page:", user); 
-
-  }, [user]);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  
   
   const [formData, setFormData] = useState({
     title: "",
@@ -17,8 +15,7 @@ const AddBookPage = () => {
     description: "",
     bookImage: null,
   });
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
+  
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -44,9 +41,10 @@ const AddBookPage = () => {
       setError("Failed to add book");
     }
   };
+  
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-white ">Add Book</h1>
+      <h1 className="text-muted-black ">Add Book</h1>
       {error && <p>{error}</p>}
       <form onSubmit={handleSubmit} className="flex flex-col justify-center gap-5 mx-10">
         <input
@@ -75,9 +73,10 @@ const AddBookPage = () => {
           type="file"
           name="bookImage"
           accept="image/*"
+          className="text-muted-black"
           onChange={handleChange}
         />
-        <button type="submit">Add Book</button>
+        <button type="submit" className="text-muted-black">Add Book</button>
       </form>
     </div>
   );

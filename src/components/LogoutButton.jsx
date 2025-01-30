@@ -21,9 +21,9 @@ const LogoutButton = () => {
   return (
     <button
       onClick={handleLogout}
-      className="p-2 bg-gray-700 rounded-full hover:bg-gray-400"
+      className="p-2 rounded-full hover:bg-gray-400"
     >
-      <ArrowRightStartOnRectangleIcon className="w-5 h-5 text-white" />
+      <ArrowRightStartOnRectangleIcon className="w-5 h-5 text-muted-black" />
     </button>
   );
 };

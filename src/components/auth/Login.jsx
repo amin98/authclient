@@ -2,7 +2,7 @@ import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthenticationAPI from "../../apis/AuthenticationAPI";
-import LogoImage from "../../assets/mrcolby-invert.png";
+import LogoImage from "../../assets/mrcolby.png";
 import { userStatusContext } from "../contexts/UserStatus";
 
 const Login = () => {
@@ -97,8 +97,8 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-5 shadow mb-44 rounded-xl">
       <img src={LogoImage} alt="Logo" className="w-36" />
-      {/* <h2 className="flex self-center text-4xl text-white">Hello, friend.</h2> */}
-      <h2 className="flex self-center text-4xl text-white">{typedText}</h2>
+      {/* <h2 className="flex self-center text-4xl text-muted-black">Hello, friend.</h2> */}
+      <h2 className="flex self-center text-4xl text-muted-black">{typedText}</h2>
       <form
         onSubmit={step === 1 ? handleEmailSubmit : handlePasswordSubmit}
         className="relative flex flex-col justify-center items-center w-full p-3 rounded-md md:w-[30rem]  "
@@ -112,7 +112,7 @@ const Login = () => {
         </p>
 
         <div
-          className={`flex  w-full justify-center items-center rounded-lg bg-white ${
+          className={`flex  w-full justify-center items-center rounded-lg  bg-white ${
             error ? "animate-shakeX border-2 border-red-600" : "border-0"
           }`}
         >
@@ -135,9 +135,9 @@ const Login = () => {
 
         <div
           className={`flex w-full rounded-md bg-white overflow-hidden mt-4 transition-all duration-300 ease-in-out ${
-            step === 2 ? "max-h-[200px]" : "max-h-0"  // Change height based on step
+            step === 2 ? "max-h-[200px]" : "max-h-0"  
           } ${error ? "animate-shakeX border-2 border-red-600" : ""
-          }` }
+          }`}
         >
           <input
             ref={passwordInputRef}

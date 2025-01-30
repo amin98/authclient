@@ -29,7 +29,7 @@ const QuesstionnairePage = () => {
 
 
   return (
-    <div  className="text-white">
+    <div  className="text-muted-black">
       <h1>Questionnaire</h1>
       <ul>
         {questionnaire.map((question) => (
